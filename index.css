@@ -1,26 +1,28 @@
-/* Reset some default styles */
+/* Reset des marges et des espacements */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Arial', sans-serif;
+html, body {
+  height: 100%; /* Assurer que le body et html prennent toute la hauteur de la page */
+  font-family: Arial, sans-serif;
   display: flex;
-  min-height: 100vh;
+  flex-direction: row; /* Disposition en ligne (menu à gauche, contenu à droite) */
 }
 
 /* Menu à gauche avec fond noir */
 .sidebar {
   width: 250px;
-  height: 100vh;
+  height: 100vh; /* Hauteur égale à la hauteur de la fenêtre */
   background-color: #222;
   color: white;
   padding: 20px;
-  position: fixed;
+  position: fixed; /* Fixer le menu à gauche */
   top: 0;
   left: 0;
+  overflow-y: auto; /* Permet de faire défiler le menu si nécessaire */
 }
 
 .profile-picture {
@@ -29,7 +31,7 @@ body {
 }
 
 .profile-picture img {
-  border-radius: 50%;
+  border-radius: 50%; /* Image ronde */
   width: 150px;
   height: 150px;
   object-fit: cover;
@@ -53,12 +55,14 @@ nav ul li a:hover {
   color: #ff6347;
 }
 
-/* Contenu principal à droite avec fond blanc */
+/* Contenu principal à droite */
 .main-content {
-  margin-left: 250px;
+  margin-left: 250px; /* Décalage pour faire de la place pour le menu */
   background-color: #fff;
   padding: 30px;
-  width: calc(100% - 250px); /* Permet de s'assurer que le contenu prend tout l'espace restant */
+  width: calc(100% - 250px); /* S'assurer que le contenu principal prend tout l'espace restant */
+  height: 100vh; /* Hauteur égale à la fenêtre */
+  overflow-y: auto; /* Permet de faire défiler le contenu */
 }
 
 /* Titres et paragraphes */
@@ -96,17 +100,21 @@ p {
   font-size: 1.8rem;
 }
 
-/* Menu latéral et contenu principal s'ajustent à la taille de l'écran */
+/* Adaptation mobile : afficher le menu au-dessus et le contenu en dessous */
 @media (max-width: 768px) {
+  html, body {
+    flex-direction: column; /* Menu au-dessus et contenu en dessous */
+  }
+
   .sidebar {
     width: 100%;
-    height: auto;
-    position: relative;
-    padding: 15px;
+    height: auto; /* Permet au menu de s'ajuster à la taille du contenu */
+    position: relative; /* Le menu n'est plus fixe */
   }
 
   .main-content {
     margin-left: 0;
+    width: 100%;
   }
 
   .profile-picture img {
